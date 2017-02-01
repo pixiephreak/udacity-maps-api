@@ -1,0 +1,46 @@
+<!-- This is the corresponding "starter code" for 04_Hello Map in Udacity and Google's Maps
+API Course, Lesson 1 -->
+<html>
+ <head>
+ <!-- styles put here, but you can include a CSS file and reference it instead! -->
+   <style type="text/css">
+     html, body { height: 100%; margin: 0; padding: 0; }
+     #map { height: 100%; }
+   </style>
+ </head>
+ <body>
+   <!-- TODO 1: Create a place to put the map in the HTML-->
+   <div id="map"></div>
+   <script>
+     // Create a map variable
+     var map
+     // Complete the following function to initialize the map
+     function initMap() {
+       // use a constructor to create a new map JS object.
+       map = new google.maps.Map(document.getElementById('map'),{
+        center: {lat: -12.083573, lng: -77.05979},
+        zoom: 14
+       });
+       //create a lat-long literal object
+       var resi =  {lat: -12.089076, lng: -77.054483};
+       //create marker
+       var marker = new google.maps.Marker({
+       position: resi,
+       map: map,
+       title: 'Pie de Limon'
+       });
+       //create info window for marker
+       var infowindow = new google.maps.InfoWindow({
+        content: 'Cafe Pituca de la Resi San Felipe' + ': '+ 'Prepárate a disfrutar un pie de limón incomparable'
+       });
+       // call info window on marker
+       marker.addListener('click', function(){
+        infowindow.open(map, marker);
+       });
+     }
+   </script>
+   <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVJQodSaGBMvQx82vNjSPH_BTgu04NtIk&v=3&callback=initMap">
+   </script>
+ </body>
+</html>
